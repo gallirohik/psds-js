@@ -45,14 +45,13 @@ const topologicalSort = () => {
   while(result.length !== tasks.length){
      const dep = deps[i+1]
      if(Array.isArray(dep)){
-      const status = dep.every(v => !tm[v - 1])
-      if(status){
+      const status = dep.every(v => tm[v - 1])
+      if(!status){
         tm[i] = false
         result.push(tasks[i])
       }
      }
-     i++
-     if(i === tasks.length){
+     if(++i === tasks.length){
        i = 0
      }
   }
